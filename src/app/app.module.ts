@@ -7,6 +7,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '9dd1fd98'
+  },
+  'push':{
+    'sender_id': '893501720152',
+    'pluginConfig':{
+      'ios': {
+        'badge':true
+      }
+    }
+  }
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -14,7 +31,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +42,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    InAppBrowser
   ]
 })
 export class AppModule {}

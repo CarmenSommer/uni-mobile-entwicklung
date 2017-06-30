@@ -1,14 +1,34 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Push Projekt
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-item>
+    <ion-label floating="Email"></ion-label>
+    <ion-input [(ngModel)]="userCredentials.email" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+    <ion-label floating="Password"></ion-label>
+    <ion-input [(ngModel)]="userCredentials.password" type="password"></ion-input>
+</ion-item>
+<button ion-button full color="secondary" (click)="signup()">Register</button>
+<button ion-button full color="primary" (click)="login()">Login</button>
+<button ion-button full color="danger" (click)="logout()">Logout</button>
+<button ion-button full color="dark" (click)="resetPassword()">Reset Password</button>
+<button ion-button full color="light" (click)="setDetails()">Set Details</button>
+
+<ion-card *ngIf ="auth.isAuthenticated(); else loggedOut">
+  <ion-card-header>I am logged in!</ion-card-header>
+  <ion-card-content>{{ awesomeness }}</ion-card-content>
+</ion-card>
+<ng-template #loggedOut>
+  <ion-card>
+    <ion-card-header>I am logged out.</ion-card-header>
+  </ion-card>
+</ng-template>
 </ion-content>
